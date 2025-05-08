@@ -1,0 +1,26 @@
+# Build output
+x64/
+Debug/
+Release/
+*.obj
+*.exe
+*.pdb
+*.ilk
+*.log
+
+# Visual Studio user-specific files
+.vs/
+*.user
+*.suo
+*.VC.db
+*.VC.opendb
+
+# CMake (如使用)
+CMakeFiles/
+CMakeCache.txt
+build/
+
+# 编译系统生成
+*.ipch
+*.tlog
+
