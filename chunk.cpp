@@ -34,6 +34,9 @@ void writeChunk(Chunk* chunk, uint8_t byte, int line) {
     chunk->count++;
 }
 
+/*
+* 在chunk中添加 常量，返回index
+*/
 int addConstant(Chunk* chunk, Value value)
 {
     writeValueArray(&chunk->constants, value);

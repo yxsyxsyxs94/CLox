@@ -101,11 +101,11 @@ namespace Compiler {
 		parsePrecedence((Precedence)(rule->precedence + 1));
 
 		switch (operatorType) {
-		case Scanner::TOKEN_PLUS:          emitByte(OP_ADD); break;
-		case Scanner::TOKEN_MINUS:         emitByte(OP_SUBTRACT); break;
-		case Scanner::TOKEN_STAR:          emitByte(OP_MULTIPLY); break;
-		case Scanner::TOKEN_SLASH:         emitByte(OP_DIVIDE); break;
-		default: return; // Unreachable.
+			case Scanner::TOKEN_PLUS:          emitByte(OP_ADD); break;
+			case Scanner::TOKEN_MINUS:         emitByte(OP_SUBTRACT); break;
+			case Scanner::TOKEN_STAR:          emitByte(OP_MULTIPLY); break;
+			case Scanner::TOKEN_SLASH:         emitByte(OP_DIVIDE); break;
+			default: return; // Unreachable.
 		}
 	}
 
@@ -127,8 +127,8 @@ namespace Compiler {
 
 		// Emit the operator instruction.
 		switch (operatorType) {
-		case Scanner::TOKEN_MINUS: emitByte(OP_NEGATE); break;
-		default: return; // Unreachable.
+			case Scanner::TOKEN_MINUS: emitByte(OP_NEGATE); break;
+			default: return; // Unreachable.
 		}
 	}
 
