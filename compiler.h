@@ -1,7 +1,5 @@
 // compiler.h
 #pragma once
-#ifndef clox_compiler_h
-#define clox_compiler_h
 
 #include "vm.h"
 #include "scanner.h"
@@ -55,5 +53,3 @@ namespace Compiler {
     static void emitConstant(Value value);
     static uint8_t makeConstant(Value value);
 }
-
-#endif

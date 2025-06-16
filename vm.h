@@ -23,8 +23,10 @@ void initVM();
 void freeVM();
 
 static void resetStack();
+static void runtimeError(const char* format, ...);
 void push(Value value);
 Value pop();
+static Value peek(int distance);
 
 InterpretResult interpret(const char* source);
 static InterpretResult run();

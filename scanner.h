@@ -1,6 +1,4 @@
 #pragma once
-#ifndef clox_scanner_h
-#define clox_scanner_h
 namespace Scanner {
 	typedef enum {
 		// Single-character tokens. µ¥×Ö·û´Ê·¨
@@ -49,4 +47,3 @@ namespace Scanner {
 	static TokenType checkKeyword(int start, int length,
 		const char* rest, TokenType type);
 }
-#endif
