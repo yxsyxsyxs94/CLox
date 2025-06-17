@@ -6,13 +6,28 @@ typedef enum {
 	VAL_NUMBER,
 } ValueType;
 
-typedef struct {
+struct  Value {
 	ValueType type;
 	union {
 		bool boolean;
 		double number;
 	} as;
-} Value;
+
+	// 构造数字类型Value
+	Value(double num) : type(VAL_NUMBER) {
+		as.number = num;
+	}
+
+	// 构造bool类型Value
+	Value(bool b) : type(VAL_BOOL) {
+		as.boolean = b;
+	}
+
+	// 构造nil类型Value
+	Value() : type(VAL_NIL) {
+		as.number = 0;
+	}
+};
 
 typedef struct {
 	int capacity;
@@ -27,9 +42,9 @@ typedef struct {
 #define AS_BOOL(value)    ((value).as.boolean)
 #define AS_NUMBER(value)  ((value).as.number)
 //装箱
-#define BOOL_VAL(value)   ((Value){VAL_BOOL, {.boolean = value}})
-#define NIL_VAL           ((Value){VAL_NIL, {.number = 0}})
-#define NUMBER_VAL(value) ((Value){VAL_NUMBER, {.number = value}})
+#define NUMBER_VAL(value) Value(value)
+#define BOOL_VAL(value) Value(value)
+#define NIL_VAL Value()
 
 void initValueArray(ValueArray* array);
 void writeValueArray(ValueArray* array, Value value);
