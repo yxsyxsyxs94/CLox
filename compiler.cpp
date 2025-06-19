@@ -96,6 +96,11 @@ namespace Compiler {
 	}
 
 	static void binary() {
+		//中缀计算，拿到一个operator，并没有急着emit右侧操作数
+		//而是将当前operator+1作为最小优先级输入parsePrecedence
+		//意味这如果里面有更高优先级，则需要优先计算，也就是此处中缀的右操作数会和更高优先级token结合
+		//也就是说parsePrecedence可能里面有更高优先级，会比这个operator优先emit，从而实现比这里operator优先计算
+		//本质依然是递归嵌套
 		Scanner::TokenType operatorType = parser.previous.type;
 		ParseRule* rule = getRule(operatorType);
 		parsePrecedence((Precedence)(rule->precedence + 1));
@@ -176,15 +181,18 @@ namespace Compiler {
 	};
 
 	static void parsePrecedence(Precedence precedence) {
+		//往前走，生成"token ①"
 		advance();
+		//往前走后，回顾前一个"token②"类型，取出前一个"token②"的前缀方法
 		ParseFn prefixRule = getRule(parser.previous.type)->prefix;
 		if (prefixRule == NULL) {
 			error("Expect expression.");
 			return;
 		}
-
+		//执行上面的"token②"的前缀方法。例：常量数字，则是emit一个常量字节码
 		prefixRule();
-
+		//将"token ①"，也就是当前token的precedence和当前传入的precedence比较
+		//如果当前token的precedence 大于等于，则进入while
 		while (precedence <= getRule(parser.current.type)->precedence) {
 			advance();
 			ParseFn infixRule = getRule(parser.previous.type)->infix;
