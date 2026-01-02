@@ -15,10 +15,18 @@ Release/
 *.VC.db
 *.VC.opendb
 
-# CMake (如使用)
+# CMake build artifacts
 CMakeFiles/
 CMakeCache.txt
 build/
+install/
+cmake_install.cmake
+CMakeUserPresets.json
+*.cmake
+!CMakeLists.txt
+!CMakePresets.json
+compile_commands.json
+CTestTestfile.cmake
 
 # 编译系统生成
 *.ipch
